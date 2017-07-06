@@ -1,0 +1,12 @@
+---
+startDelaySecs: 0
+#hostPort: 172.17.0.2:7001
+#jmxUrl: service:jmx:rmi:///jndi/iiop://172.17.0.3:7001/weblogic.management.mbeanservers.runtime
+jmxUrl: service:jmx:t3://172.17.0.2:7001/jndi/weblogic.management.mbeanservers.runtime
+username: weblogic
+password: 03b53c89
+ssl: false
+lowercaseOutputName: false
+lowercaseOutputLabelNames: false
+whitelistObjectNames: ["org.apache.cassandra.metrics:*"]
+blacklistObjectNames: ["org.apache.cassandra.metrics:type=ColumnFamily,*"]
