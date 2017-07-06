@@ -95,6 +95,10 @@ public class JmxScraper {
           if (username != null && username.length() != 0 && password != null && password.length() != 0) {
             String[] credent = new String[] {username, password};
             environment.put(javax.management.remote.JMXConnector.CREDENTIALS, credent);
+            environment.put(Context.INITIAL_CONTEXT_FACTORY, "weblogic.jndi.WLInitialContextFactory");
+            environment.put(JMXConnectorFactory.PROTOCOL_PROVIDER_PACKAGES, "weblogic.management.remote");
+            environment.put(Context.SECURITY_PRINCIPAL, username);
+            environment.put(Context.SECURITY_CREDENTIALS, password);
           }
           if (ssl) {
               environment.put(Context.SECURITY_PROTOCOL, "ssl");
