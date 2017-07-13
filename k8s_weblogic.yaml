@@ -1,0 +1,40 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: weblogic
+spec:
+  replicas: 1 # tells deployment to run 2 pods matching the template
+  template: # create pods using pod definition in this template
+    metadata:
+      # unlike pod-nginx.yaml, the name is not included in the meta data as a unique name is
+      # generated from the deployment name
+      labels:
+        k8s-app: weblogic
+    spec:
+      containers:
+      - name: weblogic
+        image: container-registry.oracle.com/middleware/weblogic:12.2.1.1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 7001
+      imagePullSecrets:
+      - name: oracleregistrykey
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: weblogic-server
+  labels:
+    app: weblogic
+spec:
+  selector:
+    k8s-app: weblogic
+  ports:
+    - protocol: TCP # Kubernetes Services support TCP and UDP for protocols. The default is TCP.
+      port: 7001
+      targetPort: 7001
+      nodePort: 32701
+  type: NodePort
+
