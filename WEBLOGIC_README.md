@@ -1,5 +1,5 @@
 # T3 protocol support 
-In order to use t3 protocol, you need to modify the source code:  
+In order to use t3 protocol, the JMX Exporter source code was modified:  
 Forked Repository: https://github.com/javafuns/jmx_exporter
 
 # Build Prometheus JMX Exporter 
